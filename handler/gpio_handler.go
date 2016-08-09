@@ -2,10 +2,10 @@ package handler
 
 import (
 	"encoding/json"
-	"net/http"
-	"github.com/evodicka/goccupied/sensor"
-	"strconv"
 	"github.com/evodicka/goccupied/output"
+	"github.com/evodicka/goccupied/sensor"
+	"net/http"
+	"strconv"
 )
 
 func GetOccupiedState(rw http.ResponseWriter, r *http.Request) {
@@ -16,6 +16,7 @@ func GetOccupiedState(rw http.ResponseWriter, r *http.Request) {
 	responseBody["occupied"] = strconv.FormatBool(light)
 
 	rw.WriteHeader(http.StatusOK)
+	rw.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(rw).Encode(responseBody)
 
 }

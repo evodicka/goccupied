@@ -5,7 +5,7 @@ import (
 )
 
 func LightOn() bool {
-    gpio.Open()
+	gpio.Open()
 	defer gpio.Close()
 
 	pin := gpio.Pin(4)

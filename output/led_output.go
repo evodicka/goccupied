@@ -1,15 +1,47 @@
 package output
 
 import (
-	gpio "github.com/stianeikeland/go-rpio"
+	"github.com/stianeikeland/go-rpio"
+	"time"
 )
 
-// Switches the state of GPIO7
-func ToggleLed() {
-	gpio.Open()
-	defer gpio.Close()
+var (
+	busyPin   = rpio.Pin(10)
+	activePin = rpio.Pin(9)
+)
 
-	pin := gpio.Pin(7)
-	pin.Output()
-	pin.Toggle()
+// Initializes the LED output pins
+func InitLEDs() {
+	busyPin.Output()
+	activePin.Output()
+}
+
+// Blinks n times on the busy pin
+func Blink(times int) {
+	// Toggle pin 20 times
+	for x := 0; x < times; x++ {
+		busyPin.Toggle()
+		time.Sleep(time.Second / 5)
+	}
+}
+
+// Switches the state of GPIO10
+func ToggleBusy() {
+	busyPin.Toggle()
+}
+
+func SwitchBusyOn() {
+	busyPin.High()
+}
+
+func SwitchBusyOff() {
+	busyPin.Low()
+}
+
+func SwitchActiveOn() {
+	activePin.High()
+}
+
+func SwitchActiveOff() {
+	activePin.Low()
 }

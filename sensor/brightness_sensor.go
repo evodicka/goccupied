@@ -1,18 +1,23 @@
 package sensor
 
 import (
-	gpio "github.com/stianeikeland/go-rpio"
+	"github.com/stianeikeland/go-rpio"
 )
+
+var (
+	pin = rpio.Pin(4)
+)
+
+// Initializes the input pin for the sensor
+func InitSensor() {
+	pin.Input()
+	pin.PullDown()
+}
 
 // Determines if the light is currently on. Reads from GPIO4. If the pin state is low, the sensor indicates that
 // the light is on.
-func LightOn() bool {
-	gpio.Open()
-	defer gpio.Close()
-
-	pin := gpio.Pin(4)
-	pin.Input()
+func IsLightOn() bool {
 
 	state := pin.Read()
-	return state == gpio.Low
+	return state == rpio.Low
 }

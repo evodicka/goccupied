@@ -6,13 +6,14 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"syscall"
 )
 
 func main() {
 
 	go func() {
 		sigchan := make(chan os.Signal, 10)
-		signal.Notify(sigchan, os.Interrupt, os.Kill)
+		signal.Notify(sigchan, os.Interrupt, os.Kill, syscall.SIGTERM)
 		<-sigchan
 		handler.Close()
 

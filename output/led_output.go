@@ -30,18 +30,22 @@ func ToggleBusy() {
 	busyPin.Toggle()
 }
 
+// Switches GPIO10 on
 func SwitchBusyOn() {
 	busyPin.High()
 }
 
+// Switches GPIO10 off
 func SwitchBusyOff() {
 	busyPin.Low()
 }
 
+// Switches GPIO09 on
 func SwitchActiveOn() {
 	activePin.High()
 }
 
+// Switches GPIO09 off
 func SwitchActiveOff() {
 	activePin.Low()
 }

@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	pin = rpio.Pin(4)
+	pin = rpio.Pin(14)
 )
 
 // Initializes the input pin for the sensor
@@ -14,10 +14,9 @@ func InitSensor() {
 	pin.PullDown()
 }
 
-// Determines if the light is currently on. Reads from GPIO4. If the pin state is low, the sensor indicates that
+// Determines if the light is currently on. Reads from GPIO14. If the pin state is low, the sensor indicates that
 // the light is on.
 func IsLightOn() bool {
-
 	state := pin.Read()
 	return state == rpio.Low
 }

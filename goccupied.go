@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/evodicka/goccupied/handler"
+	"github.com/evodicka/goccupied/scheduler"
 	"github.com/gorilla/mux"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
-	"github.com/evodicka/goccupied/scheduler"
 )
 
 func main() {
@@ -17,10 +17,11 @@ func main() {
 	defer handler.Close()
 	handler.Starting()
 
-	scheduler.Start(handler.JustBlink)
+	scheduler.Start(handler.ReadOccupiedState)
 
 	router := mux.NewRouter()
 	router.HandleFunc("/api/v1/occupied", handler.GetOccupiedState).Methods("GET")
+	router.HandleFunc("/api/v1/light", handler.GetRawLightValue).Methods("GET")
 	router.HandleFunc("/api/v1/toggle", handler.ToggleLed).Methods("POST")
 
 	handler.Started()

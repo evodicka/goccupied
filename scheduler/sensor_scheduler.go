@@ -6,16 +6,17 @@ import (
 
 var (
 	ticker = time.NewTicker(5 * time.Second)
-	quit = make(chan struct{})
+	quit   = make(chan struct{})
 )
 
-func Start(call func()) {
+// Starts the scheduler. It periodically calls the passed function
+func Start(toCall func()) {
 	go func() {
 		for {
 			select {
-			case <- ticker.C:
-				call()
-			case <- quit:
+			case <-ticker.C:
+				toCall()
+			case <-quit:
 				ticker.Stop()
 				return
 			}
@@ -23,8 +24,7 @@ func Start(call func()) {
 	}()
 }
 
+// Stops the scheduler
 func Stop() {
 	close(quit)
 }
-
-

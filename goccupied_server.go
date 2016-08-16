@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/evodicka/goccupied/handler"
-	"github.com/evodicka/goccupied/scheduler"
+	"github.com/evodicka/goccupied-server/handler"
+	"github.com/evodicka/goccupied-server/scheduler"
 	"github.com/gorilla/mux"
 	"net/http"
 	"os"

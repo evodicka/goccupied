@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/evodicka/goccupied/output"
-	"github.com/evodicka/goccupied/sensor"
+	"github.com/evodicka/goccupied-server/output"
+	"github.com/evodicka/goccupied-server/sensor"
 	"github.com/stianeikeland/go-rpio"
 )
 

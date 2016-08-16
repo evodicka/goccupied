@@ -24,4 +24,4 @@ _testmain.go
 *.prof
 *.iml
 /.idea/
-/goccupied
+/goccupied-server

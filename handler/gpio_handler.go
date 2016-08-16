@@ -2,9 +2,9 @@ package handler
 
 import (
 	"encoding/json"
-	"github.com/evodicka/goccupied/cache"
-	"github.com/evodicka/goccupied/output"
-	"github.com/evodicka/goccupied/sensor"
+	"github.com/evodicka/goccupied-server/cache"
+	"github.com/evodicka/goccupied-server/output"
+	"github.com/evodicka/goccupied-server/sensor"
 	"net/http"
 	"strconv"
 	"time"

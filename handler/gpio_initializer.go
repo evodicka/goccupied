@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/evodicka/goccupied-server/output"
+	"github.com/evodicka/goccupied-client/output"
 	"github.com/evodicka/goccupied-server/sensor"
 	"github.com/stianeikeland/go-rpio"
 )
@@ -24,7 +24,7 @@ func Starting() {
 // Switches the State to started
 func Started() {
 	output.SwitchBusyOff()
-	output.SwitchActiveOn()
+	output.SwitchFreeOn()
 }
 
 // Switches the state to Work started
@@ -40,6 +40,6 @@ func WorkStop() {
 // Deactivates all Leds and closes GPIO
 func Close() {
 	output.SwitchBusyOff()
-	output.SwitchActiveOff()
+	output.SwitchFreeOff()
 	rpio.Close()
 }

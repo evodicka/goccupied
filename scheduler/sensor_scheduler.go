@@ -11,17 +11,24 @@ var (
 
 // Starts the scheduler. It periodically calls the passed function
 func Start(toCall func()) {
-	go func() {
-		for {
-			select {
-			case <-ticker.C:
-				toCall()
-			case <-quit:
-				ticker.Stop()
-				return
-			}
+	go runner(ticker, toCall)
+}
+
+func StartPeriod(toCall func(), period int) {
+	ticker = time.NewTicker(time.Duration(period) * time.Second)
+	go runner(ticker, toCall)
+}
+
+func runner(ticker *time.Ticker, toCall func()) {
+	for {
+		select {
+		case <-ticker.C:
+			toCall()
+		case <-quit:
+			ticker.Stop()
+			return
 		}
-	}()
+	}
 }
 
 // Stops the scheduler

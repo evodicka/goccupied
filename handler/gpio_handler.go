@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/json"
 	"github.com/evodicka/goccupied-server/cache"
-	"github.com/evodicka/goccupied-server/output"
 	"github.com/evodicka/goccupied-server/sensor"
 	"net/http"
 	"strconv"
@@ -34,12 +33,6 @@ func GetRawLightValue(rw http.ResponseWriter, r *http.Request) {
 	rw.WriteHeader(http.StatusOK)
 	rw.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(rw).Encode(responseBody)
-}
-
-// Handler function to switch a LED on and off
-func ToggleLed(rw http.ResponseWriter, r *http.Request) {
-	output.ToggleBusy()
-	rw.WriteHeader(http.StatusAccepted)
 }
 
 // Reads the current state from the sensor and writes it into the cache
